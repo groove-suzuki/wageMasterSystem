@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<head>
+	<meta charset="UTF-8">
+	<title>ホーム画面</title>
+</head>
+<style>
+	body {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+		flex-direction: column;
+		font-size: 20px;
+	}
+
+	#backButton {
+		font-size: 20px;
+	}
+	
+	table {
+		font-size: 23px;
+	}
+</style>
+
+<body>
+	<script type="text/javascript" src="./detaileInfoScr.js"></script>
+	<strong>詳細画面</strong><br>
+	<br>
+	<strong>詳細社員情報</strong>
+	<table  border="2">
+		<tbody id="detailInfoTable">
+
+		</tbody>
+	</table>
+	<br>
+	<input type="button" value="戻る" id="backButton">
+</body>
+</html>

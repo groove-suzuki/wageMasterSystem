@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<head>
+	<meta charset="UTF-8">
+	<title>従業員一覧画面</title>
+</head>
+<style>
+	body {
+		margin: 0;
+		padding: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+		font-size: 20px;
+	}
+
+	input[type="text"],
+	input[type="button"] {
+		vertical-align: middle;
+		font-size: 20px;
+	}
+
+	table {
+		font-size: 23px;
+	}
+</style>
+
+<body>
+	<script type="text/javascript" src="./syainListScr.js"></script>
+	<form action="/homeScr" method="post">
+		<strong>従業員一覧画面</strong>
+		<br>
+		<br>
+		<input type="text" placeholder="氏名から検索可能" id="nameInput" name="nameInput">
+		<input type="button" value="検索" id="selectButton">
+		<div id="inputErrorMsg"></div>
+		<br>
+		<strong>従業員名簿</strong>  <input type="button" value="全件検索" id="allSelectButton">
+		<table id="syainInfoTable" border="2">
+			<thead>
+				<tr>
+					<td>社員ID</td>
+					<td>氏名</td>
+					<td>所属</td>
+					<td>役職</td>
+				</tr>
+			</thead>
+			<tbody id="allInfoTable" style="display:none;">
+				<tr th:each="syainInfo,status : ${syainInfo}">
+					<td th:text="${syainInfo.syainId}" th:id="'syainId-' + ${status.index}"></td>
+					<td><a href='' th:id="'syainName-' + ${status.index}" class="syainNameLink"
+							th:onclick="'handleClick(\'' + ${status.index} + '\')'">
+							<div th:text="${syainInfo.syainName}"></div>
+						</a></td>
+					<td th:text="${syainInfo.affiliation}"></td>
+					<td th:text="${syainInfo.position}"></td>
+				</tr>
+			</tbody>
+			<tbody id="filterInfoTable" style="display:none;">
+
+			</tbody>
+		</table>
+		<div id="selectErrorMsg"></div>
+		<br>
+		<div><input type="button" value="戻る" id="backButton"></div>
+		<input type="hidden" id="selectedSyainId">
+	</form>
+</body>
+
+</html>

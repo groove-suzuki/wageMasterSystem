@@ -17,7 +17,7 @@ public class selectDetailInfoMdl {
 		jdbcTemplate = e.jdbcTemplate();
 		//社員マスタ、役職マスタ、住所マスタ、家族マスタ、入社日マスタで検索を行う
 		List selectResult = jdbcTemplate.queryForList(
-				"SELECT a.syainId,a.syainName,a.affiliation,a.baseSalary,b.position,b.position_Allowance,c.address,c.residentTax,d.familyStructure,d.family_Allowance, CEIL(DATEDIFF(CURDATE(), e.hire_date) / 365) as serviceLength FROM "
+				"SELECT a.syainId,a.syainName,a.affiliation,a.baseSalary,b.position,b.position_Allowance,c.address,c.residentTax,d.familyStructure,d.family_Allowance, e.hire_date FROM "
 						+ "syainmst a LEFT JOIN positionmst b ON a.positionNum = b.positionNum "
 						+ "INNER JOIN addressmst c ON a.addressNum = c.addressNum "
 						+ "LEFT JOIN familymst d ON a.familyNum = d.familyNum "

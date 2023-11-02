@@ -62,10 +62,10 @@ function filterSearch(inputName) {
 				var infoRecord = syainInfo[i];
 				$("#filterInfoTable").append(
 					"<tr>"
-					+ "<td id='syainId-" + i + "'>" + infoRecord.syainId + "</td>"
+					+ "<td id='syainId-" + i + "'>" + (infoRecord.syainId || "") + "</td>"
 					+ "<td><a href='' id='syainName-" + i + "' class='syainNameLink' onclick='handleClick(" + i + ")'>"
-					+ "<div>" + infoRecord.syainName + "</div></a></td>"
-					+ "<td>" + infoRecord.affiliation + "</td>"
+					+ "<div>" + (infoRecord.syainName||"") + "</div></a></td>"
+					+ "<td>" + (infoRecord.affiliation||"") + "</td>"
 					+ "<td>" + (infoRecord.position || "") + "</td>"
 					+ "</tr>"
 				);

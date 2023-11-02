@@ -26,6 +26,10 @@
 	table {
 		font-size: 23px;
 	}
+	#syainInfoTable thead {
+            background-color:#1e90ff; /* 背景色を青に設定 */
+            color: white; /* 文字色を白に設定 */
+        }
 </style>
 
 <body>
@@ -34,12 +38,12 @@
 		<strong>従業員一覧画面</strong>
 		<br>
 		<br>
-		<input type="text" placeholder="氏名から検索可能" id="nameInput" name="nameInput">
+		<input type="text" placeholder="氏名から絞り込み可能" id="nameInput" name="nameInput">
 		<input type="button" value="検索" disabled id="selectButton">
 		<div id="inputErrorMsg"></div>
 		<br>
 		<strong>従業員名簿</strong>  <input type="button" value="全件検索" id="allSelectButton">
-		<table id="syainInfoTable" border="2">
+		<table id="syainInfoTable" border="1">
 			<thead>
 				<tr>
 					<td>社員ID</td>

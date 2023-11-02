@@ -9,7 +9,7 @@ $(function() {
 		data: JSON.stringify({
 			selectedSyainId: syainId
 		})
-	}).done(function(data) {
+	}).done(function(data) {	
 		//基本給、勤続年数、住民税、各手当の値を取得する
 		var detaileInfo = data.detaileInfo[0];
 		var hire_date = new Date(detaileInfo.hire_date);
@@ -25,9 +25,8 @@ $(function() {
 		var yearDifference = currentDate.getFullYear() - hire_date.getFullYear();
 		//控除額を計算する
 		var deductions = yearDifference * residentTax;
-		//勤続年数の後ろに"年"をつける
-		serviceLength = yearDifference + "年";
-
+		//差引支給額を計算する
+		var netPay = totalAmount - deductions;
 		//役職手当を取得したとき、"\"を先頭につける
 		if (position_Allowance != null) {
 			position_Allowance = addCurrencySign(position_Allowance);
@@ -36,14 +35,14 @@ $(function() {
 		if (family_Allowance != null) {
 			family_Allowance = addCurrencySign(family_Allowance);
 		}
-
-		var netPay = totalAmount - deductions;
 		//"\"を追加する
 		baseSalary = addCurrencySign(baseSalary);
 		residentTax = addCurrencySign(residentTax);
 		totalAmount = addCurrencySign(totalAmount);
 		deductions = addCurrencySign(deductions);
 		netPay = addCurrencySign(netPay);
+		//勤続年数の後ろに"年"をつける
+		serviceLength = yearDifference + "年";
 
 		//子画面の詳細情報一覧表に設定する
 		$("#detailInfoTable").append(
@@ -63,6 +62,7 @@ $(function() {
 			+ "<tr><td>差引支給額</td><td>" + netPay + "</td></tr>"
 		)
 	})
+	
 	//子画面の戻るボタン押下時に呼び出す関数
 	$("#backButton").on("click", function() {
 		//子画面を閉じる
